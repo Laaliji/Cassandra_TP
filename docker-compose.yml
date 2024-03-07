@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  c1:
+    image: spotify/cassandra:cluster
+    container_name: c1
+    volumes:
+      - /var/lib/cassandra/c1:/var/lib/cassandra
+    environment:
+      - CASSANDRA_TOKEN=-9223372036854775808
+
+  c2:
+    image: spotify/cassandra:cluster
+    container_name: c2
+    volumes:
+      - /var/lib/cassandra/c2:/var/lib/cassandra
+    environment:
+      - CASSANDRA_TOKEN=-3074457345618258603
+      - CASSANDRA_SEEDS=c1
+
+  c3:
+    image: spotify/cassandra:cluster
+    container_name: c3
+    volumes:
+      - /var/lib/cassandra/c3:/var/lib/cassandra
+    environment:
+      - CASSANDRA_TOKEN=3074457345618258602
+      - CASSANDRA_SEEDS=c1
